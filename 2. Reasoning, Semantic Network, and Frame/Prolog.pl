@@ -1,0 +1,32 @@
+man(marcus).
+pompeian(marcus).
+birth(marcus, 40).
+mortal(X):-man(X).
+dead(X):-mortal(X), age(X,AGE), AGE>150.
+dead(X):-pompeian(X), year(Y),(Y)>79.
+year(2002).
+age(X,AGE):-birth(X,BIRTH),year(Y),AGE is Y-BIRTH.
+
+wni(anas).
+lulusanSD(anas).
+born(anas, 1952).
+jadiPNS(X):-wni(X), lulusanSD(X), daftar(X,DAFTAR), DAFTAR<35.
+daftar(1985).
+pensiun(X):-age(X,AGE), year(Y), Y>60.
+year(2005).
+age(X,AGE):-born(X,BORN), year(Y),AGE is Y-BORN.
+daftar(X,DAFTAR):-born(X,BORN), daftar(Z),DAFTAR is Z-BORN.
+
+mahasiswa(andi).
+elektro(andi).
+teknik(X):-mahasiswa(X), elektro(X).
+matkul(kalkulus).
+matkulsulit(kalkulus).
+matkulmudah(L):- \+matkulsulit(L).
+sukamatkul(X,Y):-mahasiswa(X), matkul(Y).
+suka(X,KALKULUS):-teknik(X), sukamatkul(X,Y), Z\=KALKULUS.
+benci(X,KALKULUS):-teknik(X), matkulsulit(KALKULUS).
+hadir(X,M):-mahasiswa(X),suka(X,M).
+
+
+
